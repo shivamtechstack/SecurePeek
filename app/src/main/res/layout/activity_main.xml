@@ -17,6 +17,7 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:textColor="@color/white"
+            android:fontFamily="@font/lato_bold"
             android:layout_height="match_parent"
             android:textSize="19sp"
             android:text="SecurePeek"/>
@@ -30,24 +31,42 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="17dp"
+        android:layout_marginHorizontal="15dp"
         android:hint="URL"
+        android:orientation="horizontal"
         style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
         tools:ignore="HardcodedText">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/receivedURL"
+            android:fontFamily="@font/source_sans_pro"
             android:layout_width="match_parent"
             android:textSize="16sp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/clearbutton"
+            android:layout_gravity="center_vertical"
+           android:layout_marginVertical="5dp"
+            android:layout_width="25dp"
+            android:layout_height="35dp"
+            android:src="@drawable/baseline_clear_24"/>
+
+</LinearLayout>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/analyseButton"
         android:layout_width="wrap_content"
-        android:layout_marginTop="8dp"
+        android:fontFamily="@font/lato"
+        android:backgroundTint="@color/appTheme"
+        android:layout_marginTop="7dp"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:text="Analyse"
         android:layout_gravity="center"/>
 
@@ -55,7 +74,7 @@
         android:id="@+id/progress_and_errors_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="17dp"
+        android:layout_marginHorizontal="15dp"
         />
 
     <ScrollView
@@ -63,53 +82,149 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:orientation="vertical"
+            android:layout_marginHorizontal="13dp"
             android:layout_height="wrap_content">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/threatAnalyseResult"
-        android:layout_marginTop="10dp"
-        android:padding="4dp"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:textSize="15sp"
-        android:background="@drawable/textviewborder"
-        android:layout_height="wrap_content"
-        android:hint="Threat Analyse Result"
-        android:layout_marginHorizontal="17dp"/>
+            <LinearLayout
+                android:id="@+id/threatAnalyseContainer"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:padding="3dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/ContentResult"
-        android:layout_marginTop="10dp"
-        android:padding="4dp"
-        android:background="@drawable/textviewborder"
-        android:textSize="15sp"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Content Analyse Result"
-        android:layout_marginHorizontal="17dp"/>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="10dp">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato"
+                    android:layout_marginVertical="4dp"
+                    android:textStyle="bold"
+                    android:layout_marginHorizontal="4dp"
+                    android:padding="4dp"
+                    android:elevation="15dp"
+                    app:fontFamily="@font/lato"
+                    android:text="Threat Analyse Result : "
+                    android:textSize="15sp"
+                    android:visibility="visible" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/threatAnalyseResult"
+                    android:layout_width="match_parent"
+                    android:elevation="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/textviewborder"
+                    android:hint="Threat Analyse Result"
+                    android:padding="4dp"
+                    android:textSize="15sp"
+                    android:visibility="visible"
+                    app:fontFamily="@font/source_sans_pro" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/ContentResult"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:fontFamily="@font/source_sans_pro"
+                    android:background="@drawable/textviewborder"
+                    android:hint="Content Analyse Result"
+                    android:padding="4dp"
+                    android:textSize="15sp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/AIResultContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="10dp">
+            <com.google.android.material.textview.MaterialTextView
+                android:padding="4dp"
+                android:textSize="15sp"
+                android:layout_margin="4dp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                android:fontFamily="@font/lato"
+                android:text="AI Analysis : "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+                </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/AIResult"
+                android:layout_marginTop="5dp"
+                android:padding="4dp"
+                android:background="@drawable/textviewborder"
+                android:textSize="15sp"
+                app:fontFamily="@font/source_sans_pro"
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="AI Analyse Result" />
+            </LinearLayout>
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/urlPreview"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="17dp"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:visibility="gone"
         android:src="@mipmap/ic_launcher_round"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="13dp"
+            android:visibility="gone"
+            android:id="@+id/urlScreenshotContainer">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="10dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:padding="4dp"
+                android:fontFamily="@font/lato"
+                android:layout_margin="4dp"
+                android:textSize="15sp"
+                android:visibility="visible"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="URL Preview Screenshot : "/>
+
+            </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/urlScreenshot"
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="17dp"
-        android:layout_height="700dp"
+        android:visibility="visible"
+        android:elevation="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_height="550dp"
         android:src="@mipmap/ic_launcher_round"/>
+        </LinearLayout>
 
         </LinearLayout>
+
 
     </ScrollView>
 
