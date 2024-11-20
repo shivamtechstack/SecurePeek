@@ -1,5 +1,6 @@
 package shivam.sycodes.securepeek.network
 
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import okhttp3.MediaType.Companion.toMediaType
@@ -11,8 +12,7 @@ import java.io.IOException
 object SafeBrowsingService {
 
     private val client = OkHttpClient()
-    private const val apiKey = "Use your own API key here"
-
+    private const val apiKey = "APIKEYHERE"
     suspend fun checkUrlSafety(url: String): ThreatResult {
         val requestBody = """
         {
@@ -27,31 +27,41 @@ object SafeBrowsingService {
                 "threatEntries": [{"url": "$url"}]
             }
         }
-    """.trimIndent()
+        """.trimIndent()
 
         val request = Request.Builder()
             .url("https://safebrowsing.googleapis.com/v4/threatMatches:find?key=$apiKey")
             .post(RequestBody.create("application/json".toMediaType(), requestBody))
             .build()
 
-        client.newCall(request).execute().use { response ->
-            if (!response.isSuccessful) throw IOException("Unexpected code $response")
+        try {
+            client.newCall(request).execute().use { response ->
+                if (!response.isSuccessful) {
+                    throw IOException("Error: Received HTTP ${response.code}. Please check the request format.")
+                }
 
-            val responseJson = response.body?.string()
-            if (responseJson?.contains("matches") == true) {
-                val threatResponse = Gson().fromJson(responseJson, ThreatResponse::class.java)
-                return ThreatResult(
-                    isSafe = false,
-                    threats = threatResponse.matches?.map { match ->
-                        Threat(
-                            type = match.threatType,
-                            platform = match.platformType,
-                            url = match.threat?.url ?: "Unknown"
-                        )
-                    } ?: emptyList()
-                )
+                val responseJson = response.body?.string()
+                if (responseJson?.contains("matches") == true) {
+                    val threatResponse = Gson().fromJson(responseJson, ThreatResponse::class.java)
+                    return ThreatResult(
+                        isSafe = false,
+                        threats = threatResponse.matches?.map { match ->
+                            Threat(
+                                type = match.threatType,
+                                platform = match.platformType,
+                                url = match.threat?.url ?: "Unknown"
+                            )
+                        } ?: emptyList()
+                    )
+                }
+                return ThreatResult(isSafe = true, threats = emptyList())
             }
-            return ThreatResult(isSafe = true, threats = emptyList())
+        } catch (e: Exception) {
+            // Log the full error for debugging (optional)
+            Log.e("SafeBrowsingService", "Error checking URL safety: ${e.message}", e)
+
+            // Throw a sanitized error
+            throw Exception("Failed to check URL safety. Please try again.")
         }
     }
 
@@ -80,3 +90,4 @@ object SafeBrowsingService {
         @SerializedName("url") val url: String
     )
 }
+

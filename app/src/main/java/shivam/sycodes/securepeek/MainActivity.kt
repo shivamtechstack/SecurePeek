@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.analyseButton.setOnClickListener {
+            clearEverything()
             val url = binding.receivedURL.text.toString().trim()
             if (url.isNotEmpty()) {
                 updateProgressAndErrors("Analysing URL...")
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val checksafety = SafeBrowsingService.checkUrlSafety(url)
-                val threats = checksafety.threats ?: emptyList()
+                val threats = checksafety.threats
                 val metadata = URLMetadataFetcher.fetchURLMetadata(url)
 
                 withContext(Dispatchers.Main) {
@@ -82,7 +83,9 @@ class MainActivity : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    updateProgressAndErrors("Error analysing URL: ${e.message}")
+                    binding.threatAnalyseContainer.visibility = View.VISIBLE
+                   binding.threatAnalyseResult.text="Error analysing URL: ${e.message}"
+                    updateProgressAndErrors("")
                 }
             }
         }

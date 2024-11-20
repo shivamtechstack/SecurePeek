@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -28,42 +29,49 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
         android:hint="URL"
+        android:layout_marginStart="10dp"
         android:orientation="horizontal"
         style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
         tools:ignore="HardcodedText">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/receivedURL"
             android:fontFamily="@font/source_sans_pro"
             android:layout_width="match_parent"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:layout_weight="1"
             android:layout_height="wrap_content"/>
 
-        <ImageView
-            android:id="@+id/clearbutton"
-            android:layout_gravity="center_vertical"
-           android:layout_marginVertical="5dp"
-            android:layout_width="25dp"
-            android:layout_height="35dp"
-            android:src="@drawable/baseline_clear_24"/>
-
-</LinearLayout>
-
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ImageView
+        android:id="@+id/clearbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:src="@drawable/baseline_clear_24"
+        app:tint="@color/red" />
+
+    </LinearLayout>
+
     <com.google.android.material.button.MaterialButton
+        app:cornerRadius="10dp"
         android:id="@+id/analyseButton"
         android:layout_width="wrap_content"
         android:fontFamily="@font/lato"
-        android:backgroundTint="@color/appTheme"
+        android:textColor="@color/white"
+        android:backgroundTintMode="add"
+        app:backgroundTint="@color/appTheme"
         android:layout_marginTop="7dp"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -73,6 +81,9 @@
     <TextView
         android:id="@+id/progress_and_errors_text"
         android:layout_width="match_parent"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/orange"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
         />
@@ -99,6 +110,7 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
                     android:elevation="10dp">
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
@@ -109,6 +121,7 @@
                     android:layout_marginHorizontal="4dp"
                     android:padding="4dp"
                     android:elevation="15dp"
+                    android:textColor="@color/white"
                     app:fontFamily="@font/lato"
                     android:text="Threat Analyse Result : "
                     android:textSize="15sp"
@@ -118,12 +131,13 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/threatAnalyseResult"
                     android:layout_width="match_parent"
+                    android:textColor="@color/white"
                     android:elevation="20dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/textviewborder"
                     android:hint="Threat Analyse Result"
-                    android:padding="4dp"
+                    android:padding="8dp"
                     android:textSize="15sp"
                     android:visibility="visible"
                     app:fontFamily="@font/source_sans_pro" />
@@ -132,11 +146,12 @@
                     android:id="@+id/ContentResult"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:layout_marginTop="10dp"
                     app:fontFamily="@font/source_sans_pro"
                     android:background="@drawable/textviewborder"
                     android:hint="Content Analyse Result"
-                    android:padding="4dp"
+                    android:padding="8dp"
                     android:textSize="15sp"
                     android:visibility="gone" />
 
@@ -153,6 +168,7 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    backgroundTint="@color/black"
                     android:elevation="10dp">
             <com.google.android.material.textview.MaterialTextView
                 android:padding="4dp"
@@ -183,7 +199,7 @@
         android:id="@+id/urlPreview"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:visibility="gone"
         android:src="@mipmap/ic_launcher_round"/>
 
@@ -198,12 +214,14 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
                 android:elevation="10dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:padding="4dp"
                 android:fontFamily="@font/lato"
                 android:layout_margin="4dp"
+                android:textColor="@color/white"
                 android:textSize="15sp"
                 android:visibility="visible"
                 android:textStyle="bold"
