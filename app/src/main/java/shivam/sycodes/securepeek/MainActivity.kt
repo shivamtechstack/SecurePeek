@@ -1,7 +1,10 @@
 package shivam.sycodes.securepeek
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,10 +17,12 @@ import kotlinx.coroutines.withContext
 import shivam.sycodes.securepeek.databinding.ActivityMainBinding
 import shivam.sycodes.securepeek.metadata.URLMetadataFetcher
 import shivam.sycodes.securepeek.network.SafeBrowsingService
+import shivam.sycodes.securepeek.utils.Info
 import shivam.sycodes.securepeek.utils.WebViewScreenshotService
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var info: Info
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +35,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        info = Info(this)
 
         binding.analyseButton.setOnClickListener {
             clearEverything()
@@ -48,6 +54,9 @@ class MainActivity : AppCompatActivity() {
             binding.receivedURL.text?.clear()
             binding.progressAndErrorsText.text= ""
             clearEverything()
+        }
+        binding.privacyPolicy.setOnClickListener {
+            info.privacyPolicy()
         }
     }
 
@@ -117,4 +126,5 @@ class MainActivity : AppCompatActivity() {
         binding.urlPreview.visibility = View.GONE
         binding.urlScreenshotContainer.visibility = View.GONE
     }
+
 }

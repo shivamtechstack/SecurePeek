@@ -12,16 +12,33 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:layout_width="match_parent"
         android:background="@color/appTheme"
-        android:layout_height="wrap_content"
-        app:menu="@menu/toolbarmenu">
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
         <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:textColor="@color/white"
             android:fontFamily="@font/lato_bold"
-            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:textSize="19sp"
             android:text="SecurePeek"/>
+
+            <ImageView
+                android:layout_marginEnd="8dp"
+                android:id="@+id/privacyPolicy"
+                android:layout_width="40dp"
+                android:src="@drawable/privacypolicy"
+                android:tint="@color/white"
+                android:layout_height="27dp"/>
+
+        </LinearLayout>
 
     </com.google.android.material.appbar.MaterialToolbar>
 

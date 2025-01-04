@@ -60,9 +60,9 @@ SecurePeek fetches metadata, such as the website's title and description, using 
 ##Screenshots
 Here are some previews of the app:
 
-<img src="preview/WhatsApp%20Image%202025-01-04%20at%2019.01.53_697e5460.jpg" alt="one" width="250">
-<img src="preview/WhatsApp%20Image%202025-01-04%20at%2019.01.54_5daddb8c.jpg" alt="two" width="250">
-<img src="preview/WhatsApp%20Image%202025-01-04%20at%2019.01.54_c997a12b.jpg" alt="three" width="250">
+<img src="preview/WhatsApp%20Image%202025-01-04%20at%2019.01.53_697e5460.jpg" alt="one" width="200">
+<img src="preview/WhatsApp%20Image%202025-01-04%20at%2019.01.54_5daddb8c.jpg" alt="two" width="200">
+<img src="preview/WhatsApp%20Image%202025-01-04%20at%2019.01.54_c997a12b.jpg" alt="three" width="200">
 
 The app opens the URL in a safe, headless environment to capture a screenshot, providing a preview to the user.
 🔑 Code Highlights
