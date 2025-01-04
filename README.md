@@ -56,7 +56,13 @@ if (threatResult.isSafe) {
 2. Metadata Extraction
 
 SecurePeek fetches metadata, such as the website's title and description, using utilities for a detailed analysis.
-3. Screenshot Preview
+
+##Screenshots
+Here are some previews of the app:
+
+<img src="preview/WhatsApp%20Image%202025-01-04%20at%2019.01.53_697e5460.jpg" alt="one" width="250">
+<img src="preview/WhatsApp%20Image%202025-01-04%20at%2019.01.54_5daddb8c.jpg" alt="two" width="250">
+<img src="preview/WhatsApp%20Image%202025-01-04%20at%2019.01.54_c997a12b.jpg" alt="three" width="250">
 
 The app opens the URL in a safe, headless environment to capture a screenshot, providing a preview to the user.
 🔑 Code Highlights
@@ -118,10 +124,6 @@ object SafeBrowsingService {
     }
 }
 
-📈 Future Updates
-
-    Screenshots: Add actual images and previews of the app in action.
-    Enhancements: Additional integrations, features, and a better UI.
 
 🤝 Contributing
 
@@ -129,6 +131,3 @@ Contributions are welcome! Feel free to submit issues or pull requests to enhanc
 📜 License
 
 This project is licensed under the MIT License.
-📸 Screenshots (Coming Soon!)
-
-Stay tuned for visual updates of the app in action!
