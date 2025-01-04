@@ -12,7 +12,8 @@ import java.io.IOException
 object SafeBrowsingService {
 
     private val client = OkHttpClient()
-    private const val apiKey = "APIKEYHERE"
+    private const val apiKey = "" // replace with your api key
+
     suspend fun checkUrlSafety(url: String): ThreatResult {
         val requestBody = """
         {
@@ -57,10 +58,8 @@ object SafeBrowsingService {
                 return ThreatResult(isSafe = true, threats = emptyList())
             }
         } catch (e: Exception) {
-            // Log the full error for debugging (optional)
             Log.e("SafeBrowsingService", "Error checking URL safety: ${e.message}", e)
 
-            // Throw a sanitized error
             throw Exception("Failed to check URL safety. Please try again.")
         }
     }
